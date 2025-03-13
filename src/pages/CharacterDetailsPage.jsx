@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useOutletContext } from "react-router-dom";
 import axios from "axios";
 
 const ACharacterPage = () => {
   const [character, setCharacter] = useState({});
   const { id } = useParams();
+  const { isFavorite, removeFromFavs, addToFavs} = useOutletContext()
 
   const getCharacter = async () => {
     let response = await axios.get(
@@ -26,6 +27,15 @@ const ACharacterPage = () => {
         <li>Species: {character.species}</li>
         <li>Status: {character.status}</li>
       </ul>
+      {isFavorite(character) ? (
+              <button onClick={() => removeFromFavs(character)}>
+                Remove From Favorites
+              </button>
+            ) : (
+              <button onClick={() => addToFavs(character)}>
+                Add To Favorites
+              </button>
+        )}
     </>
   );
 };
