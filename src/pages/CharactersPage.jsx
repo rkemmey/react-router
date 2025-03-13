@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useOutletContext } from 'react-router-dom';
 
 const CharactersPage = () => {
   const [characters, setCharacters] = useState([]);
   const navigate = useNavigate()
+  const { addToFavs, isFavorite, removeFromFavs } = useOutletContext();
 
   const getAllCharacters = async () => {
     try{
@@ -29,10 +30,20 @@ const CharactersPage = () => {
       <h2>All Characters</h2>
       <ul>
         {characters.map((character) => (
-          <li key={character.id}><button onClick={() => handleClick(character.id)}>{character.name}</button></li>
-        ))}
+          <li key={character.id}><button onClick={() => handleClick(character.id)}>{character.name}</button>
+          { isFavorite(character) ? (
+            <button onClick={() => removeFromFavs(character)}>
+              Remove From Favorites
+            </button>
+          ) 
+          : (
+            <button onClick={() => addToFavs(character)}>
+              Add To Favorites
+            </button>
+         )}
+        </li>
+        ))} 
       </ul>
-
     </>
   );
 };
