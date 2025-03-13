@@ -6,6 +6,7 @@ import AboutPage from "./pages/AboutPage";
 import NotFoundPage from "./pages/NotFound";
 import ErrorPage from "./pages/ErrorPage";
 import CharactersPage from "./pages/CharactersPage";
+import CharacterDetailsPage from "./pages/CharacterDetailsPage"
 
 const router = createBrowserRouter([
   {
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
         path: "/characters/",
         element: <CharactersPage />,
       },
+      {
+        path:'/characters/:id/',
+        element: <CharacterDetailsPage/>,
+    },
       {
         //http://localhost:5173`/<anything not matching prev patterns>/`
         path: "*",

@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-
+import { useNavigate } from 'react-router-dom';
 
 const CharactersPage = () => {
   const [characters, setCharacters] = useState([]);
+  const navigate = useNavigate()
 
   const getAllCharacters = async () => {
     try{
@@ -15,6 +16,10 @@ const CharactersPage = () => {
         console.error("Error fetching data:", error); }
   };
 
+  const handleClick = (id) => {
+    navigate(`/characters/${id}`);
+  };
+
   useEffect(() => {
     getAllCharacters();
   }, []);
@@ -24,7 +29,7 @@ const CharactersPage = () => {
       <h2>All Characters</h2>
       <ul>
         {characters.map((character) => (
-          <li key={character.id}>{character.name}</li>
+          <li key={character.id}><button onClick={() => handleClick(character.id)}>{character.name}</button></li>
         ))}
       </ul>
 
