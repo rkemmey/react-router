@@ -17,3 +17,9 @@ Create a project for the Rick and Morty show. By the end of this assignment your
 - NavBar.jsx should allow users to navigate your project
 - Testing with Cypress to ensure all requirements are being met
 - Styling from React BootStrap or Tailwind.css
+
+# Part III
+
+- CharacterDetailsPage.jsx should display all the information pertaining to a single character. Ensure to utilize useParams.
+- A dynamic route that will display CharacterDetailsPage.jsx
+- Implement a functionality for useNavigate through your program
